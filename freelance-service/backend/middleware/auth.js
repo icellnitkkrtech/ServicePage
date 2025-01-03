@@ -1,18 +1,20 @@
 import joi from "joi"
 import jwt from "jsonwebtoken"
 
-export const signupValidation=(req,res,next)=>{
-    // console.log(req.body);
-    const Schema=joi.object({
-        name:joi.string().min(3).max(100).required(),
-        email:joi.string().email().required(),
-        password:joi.string().min(4).max(100).required(),
-
+export const signupValidation = (req, res, next) => {
+    const Schema = joi.object({
+      name: joi.string().min(3).max(100).required(),
+      email: joi.string().email().required(),
+      phone: joi.string().length(10).required(),
+      password: joi.string().min(4).max(100).required(),
+      role: joi.string().optional(), // Optional field with default in the handler
     });
-    const {error}=Schema.validate(req.body);
-    if(error )
-    {
-        return res.status(400).json({message:"Bad request Did Not Matched required Format ",error});
+
+    const { error }=Schema.validate(req.body);
+    if(error) {
+        return res.status(400).json({
+         message: error.details[0].message,
+        });
     }
     next();
 };

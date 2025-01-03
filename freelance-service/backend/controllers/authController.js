@@ -1,26 +1,12 @@
-import User from '../models/User.js';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Joi from "joi";
-
-const registerSchema = Joi.object({
-  name: Joi.string().min(3).max(50).required(),
-  email: Joi.string().email().required(),
-  phone: Joi.string().pattern(/^\d{10}$/).required(), // Validate 10-digit phone number
-  password: Joi.string().min(6).required(),
-  role: Joi.string().valid("Freelancer", "Client", "Admin").optional(),
-});
+import { configDotenv } from 'dotenv';
 
 export async function handleRegisterUser(req, res) {
   try {
     const { name, email, phone, password, role } = req.body;
-
-    // Validate request data
-    const { error } = registerSchema.validate(req.body);
-    if (error) {
-      return res.status(400).json({ message: error.details[0].message });
-    }
-
+    
     const normalizedEmail = email.toLowerCase();
 
     // Check if the user already exists
