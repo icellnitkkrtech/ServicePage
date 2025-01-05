@@ -1,18 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./components/dashboard/ThemeProvider";
+import HomePage from "./components/HomePage";
+import Dashboard from "./components/dashboard/Dashboard";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div className='bg-red-200'>
-        <h1>This is App.jsx for Service Page</h1>
-       </div>
-    </>
-  )
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
