@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+  /* Dark Mode Base */
+  .dark {
+    @apply bg-dark-bg text-dark-text;
+  }
+
+  /* Containers & Cards */
+  .dark .bg-white {
+    @apply bg-dark-card border-dark-border;
+  }
+
+  .dark .bg-gray-50 {
+    @apply bg-dark-bg-secondary;
+  }
+
+  /* Text Colors */
+  .dark .text-gray-600 {
+    @apply text-dark-text-secondary;
+  }
+
+  .dark .text-gray-500 {
+    @apply text-dark-text-secondary/80;
+  }
+
+  /* Forms & Inputs */
+  .dark input,
+  .dark select,
+  .dark textarea {
+    @apply bg-dark-input-bg border-dark-input-border text-dark-text;
+  }
+
+  .dark input:focus,
+  .dark select:focus,
+  .dark textarea:focus {
+    @apply border-dark-input-focus ring-1 ring-dark-input-focus;
+  }
+
+  /* Cards & Containers */
+  .dark .notification-card {
+    @apply bg-dark-card border-dark-border;
+  }
+
+  .dark .modal-content {
+    @apply bg-dark-card border-dark-border;
+  }
+}
+
+/* Direct styles to avoid circular dependencies */
+.dark .button-primary {
+  background-color: theme('colors.dark.button-primary');
+}
+
+.dark .button-primary:hover {
+  background-color: theme('colors.dark.button-primary-hover');
+}
+
+.dark .hover-bg {
+  background-color: theme('colors.dark.bg-secondary');
+}
+
+.dark .hover-bg:hover {
+  background-color: theme('colors.dark.hover');
+}
+
+/* Transitions */
+.transition-theme {
+  transition-property: color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
