@@ -1,18 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import Homepage from "./pages/HomePage";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div className='bg-red-200'>
-        <h1>This is App.jsx for Service Page</h1>
-       </div>
-    </>
-  )
-}
+    <div>
+      <Homepage />
+    </div>
+  );
+};
 
-export default App
+export default App;
